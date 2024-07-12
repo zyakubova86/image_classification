@@ -16,7 +16,7 @@ def load_model():
     """Loads the DNN model."""
 
     # Read the ImageNet class names.
-    with open('D:\\django_projects\\!opencv\\module13-introduction-to-deep-learning-with-opencv\\Applications\\classification_classes_ILSVRC2012.txt', 'r') as f:
+    with open('classification_classes_ILSVRC2012.txt', 'r') as f:
         image_net_names = f.read().split('\n')
 
     # Final class names, picking just the first name if multiple in the class.
@@ -24,8 +24,8 @@ def load_model():
 
     # Load the neural network model.
     model = cv2.dnn.readNet(
-        model='D:\\django_projects\\!opencv\\module13-introduction-to-deep-learning-with-opencv\\Applications\\DenseNet_121.caffemodel',
-        config='D:\\django_projects\\!opencv\\module13-introduction-to-deep-learning-with-opencv\\Applications\\DenseNet_121.prototxt',
+        model='DenseNet_121.caffemodel',
+        config='DenseNet_121.prototxt',
         framework='Caffe')
     return model, class_names
 
