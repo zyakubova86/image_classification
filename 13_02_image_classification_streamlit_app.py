@@ -10,8 +10,7 @@ from io import BytesIO
 st.title("OpenCV Deep Learning based Image Classification")
 
 
-# @st.cache(allow_output_mutation=True)
-@st.cache_resource
+@st.cache(allow_output_mutation=True)
 def load_model():
     """Loads the DNN model."""
 
@@ -34,8 +33,6 @@ def classify(model, image, class_names):
     """Performs inference and returns class name with highest confidence."""
 
     # Remove alpha channel if found.
-
-    # getting IndexError: tuple index out of range in this line
     if image.shape[2] == 4:
         image = cv2.cvtColor(image, cv2.COLOR_BGRA2BGR)
 
@@ -49,23 +46,17 @@ def classify(model, image, class_names):
     outputs = model.forward()
 
     final_outputs = outputs[0]
-
     # Make all the outputs 1D.
     final_outputs = final_outputs.reshape(1000, 1)
-
     # get the class label
     label_id = np.argmax(final_outputs)
-
     # Convert the output scores to softmax probabilities.
     probs = np.exp(final_outputs) / np.sum(np.exp(final_outputs))
-
     # Get the final highest probability.
     final_prob = np.max(probs) * 100.
-
     # Map the max confidence to the class label names.
     out_name = class_names[label_id]
     out_text = f"Class: {out_name}, Confidence: {final_prob:.1f}%"
-
     return out_text
 
 
