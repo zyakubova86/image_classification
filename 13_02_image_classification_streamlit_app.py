@@ -49,17 +49,23 @@ def classify(model, image, class_names):
     outputs = model.forward()
 
     final_outputs = outputs[0]
+
     # Make all the outputs 1D.
     final_outputs = final_outputs.reshape(1000, 1)
+
     # get the class label
     label_id = np.argmax(final_outputs)
+
     # Convert the output scores to softmax probabilities.
     probs = np.exp(final_outputs) / np.sum(np.exp(final_outputs))
+
     # Get the final highest probability.
     final_prob = np.max(probs) * 100.
+
     # Map the max confidence to the class label names.
     out_name = class_names[label_id]
     out_text = f"Class: {out_name}, Confidence: {final_prob:.1f}%"
+
     return out_text
 
 
