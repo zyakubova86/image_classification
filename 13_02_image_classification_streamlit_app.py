@@ -10,7 +10,8 @@ from io import BytesIO
 st.title("OpenCV Deep Learning based Image Classification")
 
 
-@st.cache(allow_output_mutation=True)
+# @st.cache(allow_output_mutation=True)
+@st.cache_resource
 def load_model():
     """Loads the DNN model."""
 
