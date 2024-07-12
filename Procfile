@@ -1,1 +1,1 @@
-web: sh setup.sh && streamlit run image_inpaint_streamlit.py
+web: sh setup.sh && streamlit run 13_02_image_classification_streamlit_app.py
